@@ -12,7 +12,7 @@
     "prestart": "npm run build",
     "start": "electron src/main.ts",
     "watch": "run-p watch:*",
-    "watch:elm": "chokidar 'src/**/*.elm' -c 'npm run build:elm'",
+    "watch:elm": "chokidar 'src/**/*.elm' -c 'npm run build'",
     "watch:ts": "chokidar 'src/**/*.ts' -c 'npm run build:ts'",
     "dev": "npm run start & npm run watch & wait",
     "format": "elm-format --yes src/Main.elm",
