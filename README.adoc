@@ -2,11 +2,11 @@
 
 Get notice from Gena's messages over telegram api.
 
-== Files
+== Setup
 
-|===
-| File | Purpose
+run `telegram-cli` (only once on this device).
+Finish the login action.
 
-| ports.ts | Wire up Elm into the html
-| main.js | Wire up the web app into Electron
-|===
+== Run
+
+npm start
