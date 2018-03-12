@@ -20,7 +20,8 @@ function createWindow() {
   });
   mainWindow.loadURL(`file://${__dirname}/../index.html`);
   mainWindow.webContents.openDevTools();
-  mainWindow.on('closed', () => mainWindow = undefined)
+  mainWindow.on('closed', () => mainWindow = undefined);
+  init();
 }
 
 app.on('window-all-closed', () => {
@@ -34,3 +35,6 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+function init() {
+}
