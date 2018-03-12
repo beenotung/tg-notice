@@ -24,10 +24,12 @@
   "dependencies": {
     "@beenotung/tslib": "^11.7.0",
     "isomorphic-fetch": "^2.2.1",
+    "node-notifier": "^5.2.1",
     "request": "^2.84.0"
   },
   "devDependencies": {
     "@types/isomorphic-fetch": "^0.0.34",
+    "@types/node-notifier": "^0.0.28",
     "@types/request": "^2.47.0",
     "browserify": "^16.1.1",
     "chokidar-cli": "^1.2.0",
@@ -36,6 +38,7 @@
     "elm": "^0.18.0",
     "elm-format": "^0.6.1-alpha",
     "npm-run-all": "^4.1.2",
+    "ts-node": "^5.0.1",
     "tsify": "^3.0.4",
     "typescript": "^2.7.2"
   }
