@@ -1,0 +1,40 @@
+{
+  "name": "gena-notice",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean && mkdir -p dist",
+    "build": "run-s build:*",
+    "build:elm": "elm-make src/Main.elm --output dist/elm.js || true",
+    "build:ports": "browserify src/ports.ts -p [ tsify ] > dist/ports.js ",
+    "prestart": "npm run build",
+    "start": "electron src/main.ts",
+    "watch": "chokidar 'src/**/*.elm' -c 'npm run build:elm'",
+    "dev": "npm run start & npm run watch & wait",
+    "format": "elm-format --yes src/Main.elm",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Beeno Tung",
+  "license": "ISC",
+  "dependencies": {
+    "@beenotung/tslib": "^11.7.0",
+    "isomorphic-fetch": "^2.2.1",
+    "request": "^2.84.0"
+  },
+  "devDependencies": {
+    "@types/isomorphic-fetch": "^0.0.34",
+    "@types/request": "^2.47.0",
+    "browserify": "^16.1.1",
+    "chokidar-cli": "^1.2.0",
+    "electron": "^1.8.3",
+    "electron-prebuilt": "^1.4.13",
+    "elm": "^0.18.0",
+    "elm-format": "^0.6.1-alpha",
+    "npm-run-all": "^4.1.2",
+    "tsify": "^3.0.4",
+    "typescript": "^2.7.2"
+  }
+}
