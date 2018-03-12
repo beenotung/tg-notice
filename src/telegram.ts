@@ -1,7 +1,6 @@
 import {spawn} from "child_process";
 import {showNotice} from "./notice";
-import {str_contains} from "@beenotung/tslib";
-
+import {str_contains} from "./utils";
 
 export function startTelegram() {
   const child = spawn('telegram-cli');
