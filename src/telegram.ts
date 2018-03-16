@@ -1,7 +1,7 @@
 import {spawn} from "child_process";
 import {showNotice} from "./notice";
 import {str_contain_any, str_contains} from "./utils";
-import {whiteNames} from "./config";
+import {whiteList, whiteNames} from "./config";
 
 export function startTelegram() {
   const child = spawn("telegram-cli");
@@ -24,11 +24,6 @@ function onLine(line: string) {
   if (!str_contain_any(whiteNames, line)) {
     return;
   }
-  const group_and_sender = line
-    .split(" <<< ")[0]
-    .split("]")[1]
-    .trim();
-  const sender = whiteNames.find(p => str_contains(p, group_and_sender));
   console.log(line);
   if (str_contains(" <<< ", line)) {
     /* message from myself */
@@ -36,10 +31,24 @@ function onLine(line: string) {
   }
   if (str_contains(" >>> ", line)) {
     /* message from whitelist */
+
+    const group_and_sender = line
+      .split(" <<< ")[0]
+      .split("]")[1]
+      .trim();
+    const sender = whiteNames.find(p => str_contains(p, group_and_sender));
+    if (sender === undefined) {
+      console.error('sender is not found on the line:', line);
+      return;
+    }
+    const sender_icon = whiteList.filter(x => x.name === sender)[0].icon;
+
     console.log(`[message from ${sender}]`);
     const ss = line.split(" >>> ");
     ss.shift();
     const message = ss.join(" >>> ").replace("\u001b[0m", "");
-    showNotice(message);
+    showNotice(message, sender + ':', sender_icon);
+    return;
   }
+  /* other case? */
 }

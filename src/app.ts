@@ -1,3 +1,3 @@
-import {startTelegram} from "./telegram";
+import {startTGNotice} from "./index";
 
-startTelegram();
+startTGNotice();
