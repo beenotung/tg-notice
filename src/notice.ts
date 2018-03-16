@@ -5,7 +5,7 @@ const icon_path = path.join(__dirname + "/../res/icon.jpg");
 // const icon_path = 'http://127.0.0.1:8080/ipfs/QmQhUFNnrk1XxFARWMUVnmQ5jW2bdPQmToFgP8QV5uKtM1';
 
 notifier.notify({
-  title: "Gena Notice"
+  title: "TG Notice"
   , message: "Ready"
 });
 
