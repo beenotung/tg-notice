@@ -1,6 +1,6 @@
 {
-  "name": "gena-notice",
-  "version": "0.0.1",
+  "name": "tg-notice",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
