@@ -16,6 +16,10 @@ export function startTelegram() {
       return;
     }
   });
+  child.on('close', code=>{
+    console.log('telegram-cli exit with code:',code);
+    process.exit(code);
+  });
   child.stderr.pipe(process.stderr);
 }
 
