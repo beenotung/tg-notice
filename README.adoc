@@ -1,6 +1,6 @@
-= Gena Notice
+= TG Notice
 
-Get notice from Gena's messages over telegram api.
+Get notice from telegram user's messages over telegram api.
 
 == Setup
 
