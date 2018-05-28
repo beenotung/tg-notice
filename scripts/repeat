@@ -1,0 +1,19 @@
+#!/bin/bash
+if [ "$1" == "-d" ]; then
+  DOUBLE=true
+  shift
+fi
+if [ $# == 0 ]; then
+  echo "Invalid: missing argument"
+  exit 1
+fi
+if [ $DOUBLE ]; then
+  repeat-double $@
+  exit $?
+fi
+while [ true ]; do
+  $@
+  if [ "$INTERVAL" ]; then
+    sleep "$INTERVAL"
+  fi
+done

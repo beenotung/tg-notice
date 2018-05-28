@@ -1,0 +1,7 @@
+#!/bin/bash
+## run in background regardless of the lifecycle of the parent
+if [ "$VERBOSE" == "true" ]; then
+  ($@&)&
+else
+  ($@ 2>/dev/null >/dev/null &)&
+fi

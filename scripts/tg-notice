@@ -1,0 +1,22 @@
+#!/bin/sh
+set -e
+pid=$(ps --no-headers x | grep tg-notice | grep -v grep | grep ts-node | awk '{print $1}')
+if [ "$1" == "-k" ] || [ "$1" == "--kill" ]; then
+  if [ "$pid" != "" ]; then
+    lsof /proc/${pid}/cwd | drop 1 | awk '{print $2}' | xargs kill
+    exit 0
+  else
+    echo >&2 "tg-notice is not running."
+    exit 1
+  fi
+fi
+if [ "$pid" != "" ]; then
+  echo "tg-notice is already running, skip"
+  exit
+fi
+cd ~/local/opt/tg-notice
+if [ "$DAEMON" == "true" ]; then
+  fork repeat -d ./run
+else
+  repeat -d ./run
+fi
