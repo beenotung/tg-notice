@@ -1,6 +1,6 @@
 import {spawn} from "child_process";
 import {showNotice} from "./notice";
-import {compare_number, str_contain_any} from "./utils";
+import {compare_number, str_contain_any, str_contains} from "./utils";
 import {whiteList, whiteNames} from "./config";
 
 export function startTelegram() {
@@ -26,7 +26,8 @@ export function startTelegram() {
 
 /* send */
 const left_arrows = "«<";
-/* receive */
+
+/* receive (if in group, both direction will be this arrow) */
 const right_arrows = "»>";
 
 function checkArrow(line: string, arrows: string) {
@@ -68,7 +69,7 @@ function getArrowPattern(line: string): string {
 type MessageMode = "receive" | "send";
 
 interface Message {
-  sender: string
+  peer: string
   message: string
   mode: MessageMode
 }
@@ -76,9 +77,9 @@ interface Message {
 function extractMessage(line: string): Message {
   const arrow_pattern = getArrowPattern(line);
   const ss = line.split(arrow_pattern);
-  let sender = ss.shift().split("]")[1].trim();
-  /* remove unicode sequence that control coloring */
-  sender = sender.substring(19, sender.length - 18);
+  const peer = ss.shift().split("]")[1].trim();
+  // /* remove unicode sequence that control coloring */
+  // peer = peer.substring(19, peer.length - 18);
   const message = ss.join(arrow_pattern).replace("\u001b[0m", "");
   let mode: MessageMode;
   if (isReceivingMessage(line)) {
@@ -88,7 +89,7 @@ function extractMessage(line: string): Message {
   }
   return {
     mode,
-    sender,
+    peer,
     message,
   };
 }
@@ -100,8 +101,13 @@ function onLine(line: string) {
     return;
   }
   const msg = extractMessage(line);
-  console.debug("message:", msg);
-  if (!str_contain_any(whiteNames, msg.sender)) {
+  console.debug("==new message==");
+  console.debug("mode: " + msg.mode);
+  console.debug("peer: " + msg.peer);
+  console.debug("content: " + msg.message);
+  console.debug("===============");
+  if (!str_contain_any(whiteNames, msg.peer)) {
+    console.debug("not matched");
     return;
   }
   if (msg.mode === "send") {
@@ -111,7 +117,7 @@ function onLine(line: string) {
   }
   if (msg.mode === "receive") {
     /* message from whitelist */
-    const sender = msg.sender;
+    const sender = whiteNames.find(name => str_contains(name, msg.peer));
     if (sender === undefined) {
       console.error("sender is not found on the line:", line);
       return;

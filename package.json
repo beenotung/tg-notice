@@ -4,8 +4,14 @@
   "description": "",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
+  "bin": {
+    "tg-notice": "dist/cli.js"
+  },
   "scripts": {
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean && gen-index",
     "build": "tsc -p .",
+    "postbuild": "chmod +x dist/cli.js",
     "postinstall": "npm run build",
     "start": "node dist/app.js",
     "lint": "tslint -p . ",
@@ -24,6 +30,7 @@
     "@angular/core": ">=2.3.1",
     "@angular/platform-browser": ">=2.3.1",
     "@angular/platform-browser-dynamic": ">=2.3.1",
+    "@beenotung/gen-index": "^1.0.4",
     "@types/node": "^8.10.38",
     "@types/node-notifier": "^0.0.28",
     "codelyzer": "^4.2.1",
