@@ -1,6 +1,6 @@
 import * as path from "path";
 
-export const app = {name: 'TG Notice'};
+export const app = {name: "TG Notice"};
 
 export interface WhiteListItem {
   name: string

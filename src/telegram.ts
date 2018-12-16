@@ -4,7 +4,7 @@ import {str_contain_any, str_contains} from "./utils";
 import {whiteList, whiteNames} from "./config";
 
 export function startTelegram() {
-  const child = spawn("telegram-cli");
+  const child = spawn("telegram-cli", ["-b"]);
   let ss: string[] = [];
   child.stdout.on("data", (buffer: Buffer) => {
     const s = buffer.toString();
@@ -17,8 +17,8 @@ export function startTelegram() {
       return;
     }
   });
-  child.on('close', code=>{
-    console.log('telegram-cli exit with code:',code);
+  child.on("close", code => {
+    console.log("telegram-cli exit with code:", code);
     process.exit(code);
   });
   child.stderr.pipe(process.stderr);
@@ -31,6 +31,7 @@ function onLine(line: string) {
   console.log(line);
   if (str_contains(" <<< ", line)) {
     /* message from myself */
+    console.log("[message from myself]");
     return;
   }
   if (str_contains(" >>> ", line)) {
@@ -42,7 +43,7 @@ function onLine(line: string) {
       .trim();
     const sender = whiteNames.find(p => str_contains(p, group_and_sender));
     if (sender === undefined) {
-      console.error('sender is not found on the line:', line);
+      console.error("sender is not found on the line:", line);
       return;
     }
     const sender_icon = whiteList.filter(x => x.name === sender)[0].icon;
@@ -51,7 +52,7 @@ function onLine(line: string) {
     const ss = line.split(" >>> ");
     ss.shift();
     const message = ss.join(" >>> ").replace("\u001b[0m", "");
-    showNotice(message, sender + ':', sender_icon);
+    showNotice(message, sender + ":", sender_icon);
     return;
   }
   /* other case? */
