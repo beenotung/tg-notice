@@ -15,11 +15,25 @@ press [Ctrl + C] after login
 run `telegram-cli` (only once on this device).
 Finish the login action.
 
-Then run `npm install`
+Then run `npm install && npm run build`
 
-== Run
 
-npm start
+== Install with npm
+```bash
+npm i -g tg-notice
+```
+
+== Running
+
+=== just get message from one friend
+```bash
+tg-notice name=Gena
+```
+
+=== run with more settings
+```bash
+tg-notice app=Gena\ Notice name=Gena name=Beeno\ Tung
+```
 
 == Run with Daemon
 
