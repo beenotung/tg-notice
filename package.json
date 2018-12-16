@@ -12,7 +12,6 @@
     "prebuild": "npm run clean && gen-index",
     "build": "tsc -p .",
     "postbuild": "chmod +x dist/cli.js",
-    "postinstall": "npm run build",
     "start": "node dist/app.js",
     "lint": "tslint -p . ",
     "fix": "tslint -p . --fix",
