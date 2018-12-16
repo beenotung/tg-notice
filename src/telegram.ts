@@ -3,7 +3,7 @@ import {showNotice} from "./notice";
 import {str_contains} from "./utils";
 
 export function startTelegram() {
-  const child = spawn('telegram-cli');
+  const child = spawn('telegram-cli', ['-b']);
   let ss: string[] = [];
   child.stdout.on('data', (buffer: Buffer) => {
     const s = buffer.toString();
