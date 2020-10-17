@@ -21,6 +21,7 @@
   "author": "Beeno Tung",
   "license": "BSD-2-Clause",
   "dependencies": {
+    "growl": "^1.10.5",
     "node-notifier": "^5.2.1"
   },
   "devDependencies": {
