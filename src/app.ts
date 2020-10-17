@@ -1,6 +1,6 @@
 import {app, setWhiteList, WhiteListItem} from "./config";
 import {startTelegram} from "./telegram";
-import {greet} from "./notice";
+import {showNotice} from "./notice";
 
 export function startTGNotice(userWhiteList?: WhiteListItem[], appName?: string) {
   if (Array.isArray(userWhiteList)) {
@@ -10,5 +10,5 @@ export function startTGNotice(userWhiteList?: WhiteListItem[], appName?: string)
     app.name = appName;
   }
   startTelegram();
-  greet();
+  showNotice('Ready', app.name)
 }
