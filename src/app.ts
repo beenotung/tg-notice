@@ -10,5 +10,5 @@ export function startTGNotice(userWhiteList?: WhiteListItem[], appName?: string)
     app.name = appName;
   }
   startTelegram();
-  showNotice('Ready', app.name)
+  showNotice("Ready", app.name);
 }
