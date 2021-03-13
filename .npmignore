@@ -1,1 +1,7 @@
 !src/index.ts
+.idea
+pnpm-lock.yaml
+.editorconfig
+tsconfig.json
+tslint.json
+*.tgz
