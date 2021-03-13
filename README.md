@@ -43,3 +43,6 @@ Setting multiple `name` will trigger notice when a message is sent from any of t
 2. make sure this repo is cloned on ~/local/opt.
    otherwise update the scripts/tg-notice line 17 (the cd command)
 3. run tg-notice from the shell
+
+## License
+[BSD-2-Clause](./LICENSE) (Free and Open Sourced Software)
