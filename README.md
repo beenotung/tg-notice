@@ -2,6 +2,8 @@
 
 Get notice from telegram user's messages over telegram api.
 
+[![npm Package Version](https://img.shields.io/npm/v/tg-notice.svg?maxAge=3600)](https://www.npmjs.com/package/tg-notice)
+
 ## Setup
 
 ### ArchLinux with yaourt
