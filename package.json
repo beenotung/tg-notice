@@ -9,9 +9,8 @@
   },
   "scripts": {
     "clean": "rm -rf dist",
-    "gen-index": "gen-index",
     "tsc": "tsc -p .",
-    "build": "run-s clean gen-index tsc",
+    "build": "run-s clean tsc",
     "start": "node dist/app.js",
     "test": "tsc -p . --noEmit",
     "prepublishOnly": "npm run build"
