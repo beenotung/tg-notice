@@ -32,12 +32,24 @@ Just get message from one friend:
 tg-notice name=Gena
 ```
 
+You can also specify the `icon` for the friend:
+```bash
+tg-notice name=Gena icon=res/gena.png
+```
+
 Run with more settings:
 ```bash
 tg-notice app="Gena Notice" name=Gena name="Beeno Tung"
 ```
 
 Setting multiple `name` will trigger notice when a message is sent from any of the users.
+
+You can also specify the `icon` of for each `name` alternatively:
+```bash
+tg-notice app="Gena Notice" \
+  name=Gena icon=res/gena.png \
+  name="Beeno Tung" icon=res/beeno.png \
+```
 
 ## Run with Daemon
 
