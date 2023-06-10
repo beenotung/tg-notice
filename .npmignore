@@ -1,6 +1,8 @@
 !src/index.ts
 .idea
+.trunk
 pnpm-lock.yaml
+.prettierignore
 .editorconfig
 tsconfig.json
 tslint.json
