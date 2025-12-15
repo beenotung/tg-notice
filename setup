@@ -2,5 +2,5 @@
 set -e
 npm install
 npm run build
-yaourt -S --noconfirm --needed telegram-cli-git
+yay -S --noconfirm --needed telegram-cli-git
 telegram-cli
